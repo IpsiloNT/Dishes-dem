@@ -1,0 +1,19 @@
+﻿<Window x:Class="Dishes.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dishes"
+        mc:Ignorable="d"
+        Title="ООО Посуда" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Image Source="/Resources/logo.png" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding ElementName=MainFrame, Path=Content.Title}" HorizontalAlignment="Center" Grid.Row="0"></TextBlock>
+        <Frame x:Name="MainFrame" Grid.Row="1" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden"></Frame>
+        <Button Content="Назад" Name="BTN_Back" Click="BTN_Back_Click_1" HorizontalAlignment="Right" VerticalAlignment="Center"></Button>
+    </Grid>
+</Window>

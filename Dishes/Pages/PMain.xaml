@@ -1,0 +1,79 @@
+﻿<Page x:Class="Dishes.Pages.PMain"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Dishes.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Продукты">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Column="0" HorizontalAlignment="Right">
+                <TextBlock Text="Введите текст для поиска:"></TextBlock>
+                <TextBlock Text="Выберите категорию:"></TextBlock>
+                <TextBlock Text="Сортировать цену:"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Left">
+                <TextBox x:Name="TB_Find" TextChanged="TB_Find_TextChanged"></TextBox>
+                <ComboBox Name="CB_Filter" DisplayMemberPath="NameCategory" SelectionChanged="CB_Filter_SelectionChanged"></ComboBox>
+                <ComboBox Name="CB_Sort" SelectionChanged="CB_Sort_SelectionChanged"></ComboBox>
+                <CheckBox x:Name="CHB_Is_In_Warehouse" Checked="CHB_Is_In_Warehouse_Checked" Unchecked="CHB_Is_In_Warehouse_Unchecked" Content="Есть на складе"></CheckBox>
+                <TextBlock x:Name="TB_Finded_Records" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"></TextBlock>
+            </StackPanel>
+        </Grid>
+
+        <ListView x:Name="LV_Products" Grid.Row="1" HorizontalAlignment="Center">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical" Height="Auto" Width="Auto">
+                        
+                    </StackPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <Grid x:Name="GD_Product" Height="200" Width="650" Background="{Binding colorBrush}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Image Source="/Resources/picture.png" Grid.Column="0" Grid.Row="1" Height="40" Width="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding NameProduct}" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding DescriptionProduct}" Grid.Column="1" Grid.Row="1"  VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding ManufacturerProduct}" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding CostProduct}" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding isInWarehouse}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Добавить" Name="BTNAddProduct" Click="BTNAddProduct_Click"></Button>
+            <Button Content="Изменить" Name="BTNChangeProduct" Click="BTNChangeProduct_Click"></Button>
+            <Button Content="Удалить" Name="BTNDeleteProduct" Click="BTNDeleteProduct_Click"></Button>
+            <Button Content="Заказы" Name="BTNOrders" Click="BTNOrders_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Page>
